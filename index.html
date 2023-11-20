@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="Content-Type"content="text-html;charset=utf-8"/>
+
+<head>
+    <style>
+        body {
+            background-image: url("https://th.bing.com/th/id/R.51b2a245cdbd8827877cac1de80bffed?rik=cAd%2bBt8By87wzg&riu=http%3a%2f%2fimage.hnol.net%2fc%2f2016-10%2f07%2f16%2f201610071620348651-2127595.jpg&ehk=6CJriXOLO3W79MAsvRhJpT1N9VOeN2VnJN3Ik7bZKx4%3d&risl=&pid=ImgRaw&r=0&PC=EMMX01");
+            background-size: cover;
+            background-position: center center;                         
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* 设置页面高度为视窗高度 */
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 60px;
+            margin-top: 60px;
+            text-shadow: 2px 2px 4px black;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+            border-radius: 20px;
+            padding: 5px;
+        }
+
+        .search-input {
+            width: 60%;
+            height: 30px;
+            border: none;
+            border-radius: 20px;
+            padding: 10px;
+            font-size: 20px;
+            outline: none;
+            color: black;
+            background-color:white;
+        }
+
+        .search-button {
+            width: 80px;
+            height: 40px;
+            border: 3px solid pink;
+            border-radius: 20px;
+            margin-left: 20px;
+            background-color: pink;
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background-color: lightgray;
+        }
+
+        .search-engines {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px; /* Adjusted margin */
+        }
+
+        .search-engine {
+            width: 100px;
+            height: 90px;
+            border: 3px solid transparent;
+            border-radius: 20px;
+            margin: 10px;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .search-engine:hover {
+            background-color: rgba(255, 255, 255, 0);
+        }
+
+        .search-engine img {
+            width: auto;
+            height: 60%;
+            border-radius: 20px;
+        }
+
+        .search-engine .selected-indicator {
+            position: absolute;
+            bottom: -3px; /* Adjusted position */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background-color: #FFA07A;
+            border-radius: 50%;
+            display: none;
+        }
+
+        .search-engine.active .selected-indicator {
+            display: block;
+        }
+
+        .search-engine span {
+            margin-top: 5px;
+            color: white;
+            font-size: 12px;
+            text-shadow: 2px 2px 4px black;
+        }
+
+        .selected-engine {
+            text-align: center;
+            color: white;
+            margin-top: 10px;
+            font-size: 18px;
+            text-shadow: 2px 2px 4px black;
+        }
+        .clock-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 10px;
+            font-size: 18px;
+            text-shadow: 2px 2px 4px black;
+            position: relative;
+        }
+
+        .clock {
+            color: white;
+            font-size: 50px;
+            text-shadow: 2px 2px 4px black;
+            position: absolute;
+            top: 5%; 
+            left: 15%; /* 水平方向上居中 */
+            transform: translate(-50%, -50%);
+        }
+
+        .quote {
+            color: white;
+            text-align: left;
+            font-style: italic;
+            font-size:15px ;
+            margin-top: auto;
+            text-shadow: 2px 2px 4px purple;
+        }
+        .gmail {
+            color: white;
+            text-align:right ;
+            font-size:10px ;
+            margin-bottow: 5px;
+            text-shadow: 2px 2px 4px black;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1 id="title">渔利搜</h1>
+    <div class="search-box">
+        <input type="text" id="search-input" class="search-input" placeholder="请输入搜索内容">
+        <button id="search-button" class="search-button">搜索</button>
+    </div>
+    <div class="search-engines">
+        <div id="google" class="search-engine">
+            <img src="https://5b0988e595225.cdn.sohucs.com/images/20190514/94400ac752234554b6fe398de63c1aa8.jpeg">
+            <div class="selected-indicator"></div>
+            <span>Google</span>
+        </div>
+        <div id="baidu" class="search-engine">
+            <img src="https://p3.itc.cn/q_70/images03/20211117/1270baf1c2f84fa19a99ef82c52d454c.png">
+            <div class="selected-indicator"></div>
+            <span>百度</span>
+        </div>
+        <div id="bing" class="search-engine">
+            <img src="https://p4.itc.cn/q_70/images03/20201005/0719b810ed9748038cdd8e2963277f63.jpeg">
+            <div class="selected-indicator"></div>
+            <span>Bing</span>
+        </div>
+        <div id="youtube" class="search-engine">
+            <img src="https://n.sinaimg.cn/translate/275/w1200h675/20180409/60mh-fyvtmxe5209891.png">
+            <div class="selected-indicator"></div>
+            <span>YouTube</span>
+        </div>
+        <div id="wikipedia" class="search-engine">
+            <img src="https://img0.baidu.com/it/u=2814204533,1094610520&fm=253&fmt=auto&app=138&f=PNG?w=548&h=500">
+            <div class="selected-indicator"></div>
+            <span>Wikipedia</span>
+        </div>
+        <div id="yahoo" class="search-engine">
+            <img src="https://img0.baidu.com/it/u=2171656144,1257972064&fm=253&fmt=auto&app=138&f=JPEG?w=607&h=400">
+            <div class="selected-indicator"></div>
+            <span>Yahoo!</span>
+        </div>
+        <div id="duckduckgo" class="search-engine">
+            <img src="https://www.arimetrics.com/wp-content/uploads/2020/01/duckduckgo.jpg">
+            <div class="selected-indicator"></div>
+            <span>DuckDuckGo</span>
+        </div>
+    </div>
+    <div class="selected-engine" id="selected-engine-text">当前选择：Google</div>
+    <div class="quote">"不积跬步，无以至千里；不积小流，无以成江海。" - 肚儿虾</div>
+    <div class="gmail">联系我s1159942342@gmail.com</div>
+    <div class="clock" id="clock">00:00:00</div>
+    
+    <script>
+        var searchInput = document.getElementById("search-input");
+        var searchButton = document.getElementById("search-button");
+        var searchEngines = document.getElementsByClassName("search-engine");
+        var selectedEngineText = document.getElementById("selected-engine-text");
+
+        var searchUrls = {
+            "google": "https://www.google.com/search?q=",
+            "baidu": "https://www.baidu.com/s?wd=",
+            "bing": "https://cn.bing.com/search?q=",
+            "youtube": "https://www.youtube.com/results?search_query=",
+            "wikipedia": "https://zh.wikipedia.org/wiki/",
+            "yahoo": "https://search.yahoo.com/search?p=",
+            "duckduckgo": "https://duckduckgo.com/?q="
+        };
+
+        var searchEngine = "google";
+
+        searchButton.addEventListener("click", function() {
+            var searchValue = searchInput.value;
+            if (searchValue) {
+                var searchUrl = searchUrls[searchEngine] + searchValue;
+                window.open(searchUrl, "_blank");
+            }
+        });
+
+        for (var i = 0; i < searchEngines.length; i++) {
+            searchEngines[i].addEventListener("click", function() {
+                var id = this.id;
+                searchEngine = id;
+
+                for (var j = 0; j < searchEngines.length; j++) {
+                    searchEngines[j].classList.remove("active");
+                }
+
+                this.classList.add("active");
+                selectedEngineText.textContent = "当前选择：" + id.charAt(0).toUpperCase() + id.slice(1);
+            });
+        }
+        function updateClock() {
+            var clockElement = document.getElementById("clock");
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+
+            // 为了保持两位数格式，如果小时、分钟、秒钟小于10，则在前面添加一个零
+            hours = (hours < 10) ? "0" + hours : hours;
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+            seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+            var timeString = hours + ":" + minutes + ":" + seconds;
+            clockElement.textContent = timeString;
+        }
+
+        // 初始加载时调用一次
+        updateClock();
+
+        // 每秒更新一次
+        setInterval(updateClock, 1000);
+        // 执行搜索的函数
+        function performSearch() {
+            var searchValue = searchInput.value;
+            if (searchValue) {
+                var searchUrl = searchUrls[searchEngine] + searchValue;
+                window.open(searchUrl, "_blank");
+            }
+        }
+
+        // 搜索按钮点击事件监听器
+        searchButton.addEventListener("click", performSearch);
+
+        // 搜索输入框按下回车键事件监听器
+        searchInput.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                performSearch();
+            }
+        });
+
+        // ...（原有的代码）
+    </script>
+</body>
+</html>
